@@ -15,6 +15,12 @@ import os
 
 os.system('mkdir certificates')
 
+'''
+Please edit the filenames in the function below to change the fonts and the certificate file name
+Play around by generating a single certificate and change the fonts accordingly
+
+'''
+
 
 def generateImages(to_draw):
     details=dataset.iloc[:,:].values
