@@ -7,13 +7,9 @@ Steps to run
 1) Install pygame and Pillow using  - 
 ```console
 foo@bar:~$ pip install pygame
-foo
-```
-```console
 foo@bar:~$ pip install Pillow
-foo
 ```
- 
+
 2) There are 2 files which you have to make, one is the csv file which contains all the entries, and second is an image of the certificate.
  The sample files are test.csv and certificate.jpg
 3) Use any name for the csv, but keep the name of the jpeg as certificate.jpg
@@ -21,7 +17,6 @@ foo
 5) Run the CertiGen.py file using - 
 ```console
 foo@bar:~$ python CertiGen.py
-foo
 ```
 6) Enter the name of the file, the event name and the year when prompted
 7) Once the new file is generated, a window will open in your screen, which will display your certificate.
