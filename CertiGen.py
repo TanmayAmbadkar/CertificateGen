@@ -11,13 +11,16 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from HashGen import *
 import pygame
+import os
+
+os.system('mkdir certificates')
 
 
 def generateImages(to_draw):
     details=dataset.iloc[:,:].values
     for detail in details:
         i=0
-        img = Image.open("kc1.jpg")
+        img = Image.open("certificate.jpg")
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("mont.otf", size = 80)
         for rect in to_draw:        
@@ -26,15 +29,15 @@ def generateImages(to_draw):
                 detail[i]=f'Certificate ID : {detail[i]}'
             draw.text( (rect.left*4,rect.top*4), detail[i], (0,0,0), font, align='center')
             i+=1
-        img.save( f'{detail[3]}.pdf', "pdf", resolution=100.0)
+        img.save( f'certificates/{detail[3]}.pdf', "pdf", resolution=100.0)
     
 
 
 
 pygame.init()
 
-img = Image.open("kc1.jpg")
-image = pygame.image.load(r'kc1.jpg') 
+img = Image.open("certificate.jpg")
+image = pygame.image.load(r'certificate.jpg') 
 width, height = img.size
 image = pygame.transform.scale(image,(width//4,height//4))
 screen = pygame.display.set_mode((width//4,height//4)) 
