@@ -11,10 +11,10 @@ foo@bar:~$ pip install Pillow
 ```
 
 2) There are 2 files which you have to make, one is the csv file which contains all the entries, and second is an image of the certificate.
- The sample files are test.csv and certificate.jpg
+ The sample files are```test.csv``` and ```certificate.jpg```
 3) Use any name for the csv, but keep the name of the jpeg as certificate.jpg
-4) Open the CertiGen.py file and read the docstring to know more about how to change fonts, size etc
-5) Run the CertiGen.py file using - 
+4) Open the ```CertiGen.py``` file and read the docstring to know more about how to change fonts, size etc
+5) Run the ```CertiGen.py``` file using - 
 ```console
 foo@bar:~$ python CertiGen.py
 ```
