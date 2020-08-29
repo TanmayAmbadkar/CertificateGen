@@ -1,6 +1,5 @@
 import sys
 import pygame as pg
-import pandas as pd
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -46,7 +45,7 @@ clock = pg.time.Clock()
 text_group = []
 i = 0
 for column in columns[0:len(columns)-1]:
-    text_group.append(Text(column, (100, 100+i), pg.Color('steelblue1')))
+    text_group.append(Text(column, (100, 100+i), pg.Color('black')))
     i+=100;
 
 all_sprites = pg.sprite.Group(text_group)
