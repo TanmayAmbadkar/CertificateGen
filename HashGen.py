@@ -31,7 +31,8 @@ for detail in details:
 dataset['Hash']=hash1
 x=dataset.iloc[:,[1]].values
 del dataset['RollNo']
-del dataset['Position']
+if(details[0][1] == '-'):
+    del dataset['Position']
 dataset['RollNo']=x
 dataset.to_csv('generated.csv',index=False)
 
