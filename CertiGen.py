@@ -42,13 +42,13 @@ def generateImages(to_draw):
 
 pygame.init()
 
+
 img = Image.open("certificate.jpg")
 image = pygame.image.load(r'certificate.jpg') 
 width, height = img.size
 image = pygame.transform.scale(image,(width//4,height//4))
 screen = pygame.display.set_mode((width//4,height//4)) 
 
-pygame.display.set_caption('Image') 
 clock = pygame.time.Clock()
   
 running=True
@@ -58,12 +58,17 @@ pos=None
 mouse_pos=None
 final_pos=None
 # infinite loop 
+columns = dataset.columns.tolist()
+i = 0;
 while running : 
   
     # completely fill the surface object 
     # with white colour 
+    pygame.display.set_caption(columns[i]) 
+    
     screen.fill((0,0,0)) 
     screen.blit(image, (0, 0)) 
+    
   
     # iterate over the list of Event objects 
     # that was returned by pygame.event.get() method. 
@@ -83,6 +88,7 @@ while running :
             rect = pygame.Rect(pos,(final_pos[0]- pos[0], final_pos[1]-pos[1]))
             rect.normalize()
             to_draw+=[rect]
+            i+=1
         
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
