@@ -8,7 +8,7 @@ import os
 
 pg.init()
 FONT = pg.font.Font('mont.otf', 20)
-columns = dataset.columns.tolist()
+columns = dataset.columns.tolist()[:-1]
 
 class Text(pg.sprite.Sprite):
 
@@ -19,7 +19,11 @@ class Text(pg.sprite.Sprite):
 
 
 def generateImages(to_draw):
+    
+    if not os.path.exists('certificates'):
+        os.mkdir('certificates')
     details=dataset.iloc[:,:].values
+    j=0
     for detail in details:
         i=0
         img = Image.open("certificate.jpg")
@@ -31,7 +35,8 @@ def generateImages(to_draw):
                 detail[i]=f'Certificate ID : {detail[i]}'
             draw.text( (text.rect.left*4,text.rect.top*4), detail[i], (0,0,0), font, align='center')
             i+=1
-        img.save( f'certificates/{detail[3]}.pdf', "pdf", resolution=100.0)
+        img.save(f'certificates/{dataset["Filename"][j]}.pdf', "pdf", resolution=100.0)
+        j+=1
     
 
 

@@ -11,6 +11,7 @@ year=input("Enter the year: ")
 details=dataset.iloc[:,1:].values
 
 hash1=[]
+filename = []
 i=0
 for detail in details:
 
@@ -21,15 +22,19 @@ for detail in details:
     #x=x.encode(encoding='UTF-8',errors='strict')
     #hash_object=hl.md5(x)
     #hash1.append(hash_object.hexdigest())
+    fname = detail[0]+ '-' + detail[1]
+    filename.append(fname)
+    print(fname)
     hash1.append(x)
     
 
 dataset['Hash']=hash1
 x=dataset.iloc[:,[1]].values
 del dataset['RollNo']
-#if(details[0][1] == '-'):
-#    del dataset['Position']
+
+
 dataset['RollNo']=x
+dataset['Filename']=filename
 dataset.to_csv('generated.csv',index=False)
 
 print("HashGen done")
