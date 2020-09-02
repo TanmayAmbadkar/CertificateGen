@@ -1,6 +1,7 @@
 import pandas as pd
 import hashlib as hl
 import base64
+import time
 
 filename=input("Enter name of csv file: ")
 dataset=pd.read_csv(filename);
@@ -22,8 +23,9 @@ for detail in details:
     #x=x.encode(encoding='UTF-8',errors='strict')
     #hash_object=hl.md5(x)
     #hash1.append(hash_object.hexdigest())
-    fname = detail[0]+ '-' + detail[1]
-    filename.append(fname)
+    #fname = detail[0]+ '-' + str(time.time()).replace('.', '-')
+    fname = detail[0]+ '-' + i
+    i+=1
     print(fname)
     hash1.append(x)
     
