@@ -5,7 +5,6 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from HashGen import *
 import os
-
 pg.init()
 FONT = pg.font.Font('mont.otf', 20)
 columns = dataset.columns.tolist()[:-1]
@@ -35,9 +34,9 @@ def generateImages(to_draw):
                 detail[i]=f'Certificate ID : {detail[i]}'
             draw.text( (text.rect.left*4,text.rect.top*4), detail[i], (0,0,0), font, align='center')
             i+=1
-        img.save(f'certificates/{event_name}/{year}/{dataset["Filename"][j]}.pdf', "pdf", resolution=100.0)
+        img.save(dataset["Filename"][j], "pdf", resolution=100.0)
         j+=1
-    
+        
 
 
 img = Image.open("certificate.jpg")
@@ -93,3 +92,5 @@ while not done:
 
 
 pg.quit()
+
+print("Certificates generated successfully!")
