@@ -21,4 +21,17 @@ foo@bar:~$ python generator.py
 7) Once the new file is generated, a window will open in your screen, which will display your certificate.
 8) Drag the text fields to wherever you would like to place them  
 9) Once the fields are set, press enter. The program will automatically close when all certificates are generated.
-10) See the generated certificates in the 'certificates' folder 
+10) See the generated certificates in the 'certificates' folder. Each certificate will be named after the roll number of the receipient.
+
+# Things to take care of
+
+1) There are two types of certificates, one with the following fields
+ 1) Name
+ 3) Position
+ 4) Sub - event
+ 
+And the other without the sub-event. In this case, in your input csv file, please fill in the column of Sub Event with hyphens ('-').
+This will generate the new csv without the sub event, and thus, the certificates will not have the sub event field. 
+Please check the included test.csv for an example.
+
+Also, it all the files should be in the same folder as the executable python file.
