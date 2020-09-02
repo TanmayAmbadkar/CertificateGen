@@ -38,8 +38,9 @@ def generateImages(to_draw):
 img = Image.open("certificate.jpg")
 image = pg.image.load(r'certificate.jpg') 
 width, height = img.size
-image = pg.transform.scale(image,(width//4,height//4))
-screen = pg.display.set_mode((width//4,height//4)) 
+dim = (width//4,height//4)
+image = pg.transform.scale(image, dim)
+screen = pg.display.set_mode(dim) 
 
 clock = pg.time.Clock()
 text_group = []
