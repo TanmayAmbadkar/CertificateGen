@@ -23,10 +23,8 @@ for detail in details:
     #x=x.encode(encoding='UTF-8',errors='strict')
     #hash_object=hl.md5(x)
     #hash1.append(hash_object.hexdigest())
-    #fname = detail[0]+ '-' + str(time.time()).replace('.', '-')
-    fname = detail[0]+ '-' + i
-    i+=1
-    print(fname)
+    fname = detail[0]+ '-' + str(time.time()).replace('.', '-')
+    #print(fname)
     hash1.append(x)
     
 
