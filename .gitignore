@@ -1,3 +1,5 @@
 *.pdf
 *.jpg
 certificate.jpg
+certificates/
+__pycache__/
