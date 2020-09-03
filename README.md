@@ -24,14 +24,4 @@ foo@bar:~$ python generator.py
 10) See the generated certificates in the 'certificates' folder. Each certificate will be named after the roll number of the receipient.
 
 # Things to take care of
-
-1) There are two types of certificates, one with the following fields
- 1) Name
- 3) Position
- 4) Sub - event
- 
-And the other without the sub-event. In this case, in your input csv file, please fill in the column of Sub Event with hyphens ('-').
-This will generate the new csv without the sub event, and thus, the certificates will not have the sub event field. 
-Please check the included test.csv for an example.
-
-Also, it all the files should be in the same folder as the executable python file.
+The first two columns of the csv should be the roll number and the name. That is mandatory
