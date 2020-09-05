@@ -5,15 +5,21 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from HashGen import *
 import os
+import zipfile
+
+
+
 pg.init()
 FONT = pg.font.Font('mont.otf', 20)
+FONT1 = pg.font.Font('mont.otf', 12)
 columns = dataset.columns.tolist()[:-1]
+
 
 class Text(pg.sprite.Sprite):
 
-    def __init__(self, text, pos, color, *groups):
+    def __init__(self, text, pos, color, font, *groups):
         super().__init__(*groups)
-        self.image = FONT.render(text, True, color)
+        self.image = font.render(text, True, color)
         self.rect = self.image.get_rect(center=pos)
 
 
@@ -29,13 +35,34 @@ def generateImages(to_draw):
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("mont.otf", size = 80)
         for text in to_draw:        
-            if(columns[i]=='Hash'):                
+            if(columns[i]=='Certificate ID' or columns[i]=='Date'):                
                 font = ImageFont.truetype("mont.otf", size = 50)
-                detail[i]=f'Certificate ID : {detail[i]}'
+                detail[i]=f'{columns[i]} : {detail[i]}'
             draw.text( (text.rect.left*4,text.rect.top*4), detail[i], (0,0,0), font, align='center')
             i+=1
         img.save(f'certificates/{event_name}/{year}/{dataset["Filename"][j]}', "pdf", resolution=100.0)
+        
+        dataset.to_csv(f'certificates/{event_name}/{year}/{event_name}_{year}.csv',index=False)
         j+=1
+     
+    zip()
+
+
+def zip():
+
+    zipf = zipfile.ZipFile(f'{event_name}_{year}.zip', 'w', zipfile.ZIP_DEFLATED)
+    zipdir(f'certificates/{event_name}/{year}/', zipf)
+    zipf.close()
+
+def zipdir(path, ziph):
+    # ziph is zipfile handle
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if '.zip' in file or '.csv' in file:
+                continue
+            ziph.write(os.path.join(root, file), file)
+
+    
         
 
 
@@ -50,7 +77,10 @@ clock = pg.time.Clock()
 text_group = []
 i = 0
 for column in columns[0:len(columns)-1]:
-    text_group.append(Text(column, (100, 100+i), pg.Color('black')))
+    if column == 'Certificate ID' or column == 'Date':
+        text_group.append(Text(column, (100, 100+i), pg.Color('black'), FONT1))
+    else:
+        text_group.append(Text(column, (100, 100+i), pg.Color('black'), FONT))
     i+=100;
 
 all_sprites = pg.sprite.Group(text_group)

@@ -2,6 +2,7 @@ import pandas as pd
 import hashlib as hl
 import base64
 import time
+import datetime
 
 filename=input("Enter name of csv file: ")
 dataset=pd.read_csv(filename);
@@ -14,6 +15,8 @@ details=dataset.iloc[:,1:].values
 hash1=[]
 filename = []
 i=0
+today = datetime.date.today().strftime('%d-%m-%Y')
+date = []
 for detail in details:
 
     detail[0]=str(detail[0])
@@ -29,16 +32,18 @@ for detail in details:
     filename.append(fname)
     #print(fname)
     hash1.append(x)
+    date.append(today)
     
 
-dataset['Hash']=hash1
+dataset['Certificate ID']=hash1
+dataset['Date'] = date
 x=dataset.iloc[:,[1]].values
 del dataset['RollNo']
 
 
 dataset['RollNo']=x
 dataset['Filename']=filename
-dataset.to_csv('generated.csv',index=False)
+dataset.to_csv(f'{event_name}_{year}.csv',index=False)
 
 print("HashGen done")
     
