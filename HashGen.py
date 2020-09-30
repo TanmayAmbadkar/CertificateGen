@@ -3,31 +3,32 @@ import hashlib as hl
 import base64
 import time
 import datetime
+import urllib
 
 filename=input("Enter name of csv file: ")
+event_name = input("Enter name of event: ")
+year=input("Enter the year: ")
+certificate = input("Enter name of certificate file: ")
+count = int(input("Enter the number of the first certificate: "))
 dataset=pd.read_csv(filename);
 
-event_name=input("Enter name of your event: ")
-year=input("Enter the year: ")
 
 details=dataset.iloc[:,1:].values
 
 hash1=[]
 filename = []
-i=0
+i=count
 today = datetime.date.today().strftime('%d-%m-%Y')
 date = []
 for detail in details:
 
     detail[0]=str(detail[0])
-    s="-".join(detail)
-    x="{}-{}-{}".format(event_name,year,s)
-    x = x.lower()
+    x=f"IIITV/STUD-GYMKHANA/CERT/{year}/{i:05}"
     #x=x.encode(encoding='UTF-8',errors='strict')
     #hash_object=hl.md5(x)
     #hash1.append(hash_object.hexdigest())
    # fname = detail[0]+ '-' + str(time.time()).replace('.', '-')
-    fname = f"{x}.pdf"
+    fname = f"IIITV-STUD-GYMKHANA-CERT-{year}-{i}.pdf"
     i+=1
     filename.append(fname)
     #print(fname)

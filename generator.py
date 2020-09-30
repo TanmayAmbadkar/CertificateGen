@@ -25,24 +25,30 @@ class Text(pg.sprite.Sprite):
 
 def generateImages(to_draw):
     
-    if not os.path.exists(f'certificates/{event_name}/{year}'):
-        os.makedirs(f'certificates/{event_name}/{year}')
+    if not os.path.exists(f'certificates/{year}/{event_name}'):
+        os.makedirs(f'certificates/{year}/{event_name}')
     details=dataset.iloc[:,:].values
     j=0
     for detail in details:
         i=0
-        img = Image.open("certificate.jpg")
+        img = Image.open(certificate)
+        width, height = img.size
+        dim = (width//2, height//2)
+        img = img.resize(dim)
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype("mont.otf", size = 80)
+        font = ImageFont.truetype("mont.otf", size = 40)
         for text in to_draw:        
             if(columns[i]=='Certificate ID' or columns[i]=='Date'):                
-                font = ImageFont.truetype("mont.otf", size = 50)
-                detail[i]=f'{columns[i]} : {detail[i]}'
-            draw.text( (text.rect.left*4,text.rect.top*4), detail[i], (0,0,0), font, align='center')
+                font = ImageFont.truetype("mont.otf", size = 25)
+                if columns[i] == 'Certificate ID':
+                    detail[i]=f'{columns[i]} : {detail[i]}'
+                else:
+                    detail[i]=f'{detail[i]}'
+            draw.text( (text.rect.left*2,text.rect.top*2), detail[i], (0,0,0), font, align='center')
             i+=1
-        img.save(f'certificates/{event_name}/{year}/{dataset["Filename"][j]}', "pdf", resolution=100.0)
+        img.save(f'certificates/{year}/{event_name}/{dataset["Filename"][j]}', "pdf", resolution=100.0)
         
-        dataset.to_csv(f'certificates/{event_name}/{year}/{event_name}_{year}.csv',index=False)
+        dataset.to_csv(f'certificates/{year}/{event_name}/{event_name}_{year}.csv',index=False)
         j+=1
      
     zip()
@@ -51,7 +57,7 @@ def generateImages(to_draw):
 def zip():
 
     zipf = zipfile.ZipFile(f'{event_name}_{year}.zip', 'w', zipfile.ZIP_DEFLATED)
-    zipdir(f'certificates/{event_name}/{year}/', zipf)
+    zipdir(f'certificates/{year}/{event_name}/', zipf)
     zipf.close()
 
 def zipdir(path, ziph):
@@ -66,8 +72,8 @@ def zipdir(path, ziph):
         
 
 
-img = Image.open("certificate.jpg")
-image = pg.image.load(r'certificate.jpg') 
+img = Image.open(certificate)
+image = pg.image.load(certificate) 
 width, height = img.size
 dim = (width//4,height//4)
 image = pg.transform.scale(image, dim)
