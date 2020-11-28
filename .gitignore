@@ -1,8 +1,4 @@
-*.pdf
-*.jpg
-certificate.jpg
-certificates/
-__pycache__/
-backend/
-*.zip
-*.csv
+certificates/*
+csv/*
+generated/*
+images/*

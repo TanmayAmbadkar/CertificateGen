@@ -82,7 +82,7 @@ screen = pg.display.set_mode(dim)
 clock = pg.time.Clock()
 text_group = []
 i = 0
-for column in columns[0:len(columns)-1]:
+for column in columns[0:len(columns)-2]:
     if column == 'Certificate ID' or column == 'Date':
         text_group.append(Text(column, (100, 100+i), pg.Color('black'), FONT1))
     else:
